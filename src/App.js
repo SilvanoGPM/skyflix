@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
 import api from 'services/api';
+import MovieRow from 'components/MovieRow';
+import GlobalStyle from './globalStyles';
 
 const App = () => {
   const [homeList, setHomeList] = useState([]);
@@ -13,12 +16,21 @@ const App = () => {
     loadHomeList();
   }, []);
 
-  homeList.forEach(items => {
-    console.log(items);
-  });
-
   return (
-    <div>SkyFlix</div>
+    <div>
+      <GlobalStyle />
+
+      <section>
+        {homeList.map((item) => (
+          <MovieRow
+            key={item.slug}
+            title={item.title}
+            items={item.items}
+          />
+        ))}
+      </section>
+
+    </div>
   );
 }
 
