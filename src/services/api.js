@@ -45,6 +45,19 @@ const api = {
       },
     ];
   },
+
+  getMovieInfo: async (id, type) => {
+    const types = {
+      movie: `/movie/${id}`,
+      tv: `/tv/${id}`,
+    };
+
+    if (id) {
+      return makeRequest(types[type]);
+    }
+
+    return {};
+  }
 };
 
 export default api;
