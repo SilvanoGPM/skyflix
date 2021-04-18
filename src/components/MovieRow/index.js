@@ -1,7 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 
+import noImage from 'assets/no-image.png';
+import debounce from 'utils/debounce';
 import {
   leftDislocation,
   listItemWidth,
@@ -37,6 +39,18 @@ const MovieRow = ({ title, items }) => {
     setScrollLength(length);
   }, [scrollLength]);
 
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setScrollLength(0);
+    }, 500);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
   return (
     <Row>
       <Title>{title}</Title>
@@ -57,7 +71,11 @@ const MovieRow = ({ title, items }) => {
           {items.results.map((item) => (
             <ListItem key={item.id}>
               <Image
-                src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                src={(
+                  item.poster_path
+                    ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
+                    : noImage
+                )}
                 alt={item.original_title}
               />
             </ListItem>

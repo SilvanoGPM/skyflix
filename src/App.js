@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import api from 'services/api';
+import debounce from 'utils/debounce';
+import loader from 'assets/loader.gif';
 import GlobalStyle from './globalStyles';
 import Header from 'components/Header';
 import MovieRow from 'components/MovieRow';
 import FeaturedMovie from 'components/FeaturedMovie';
-import loader from 'assets/loader.gif';
 import { Lists, Loading, Loader } from './styles';
 
 const App = () => {
@@ -31,9 +32,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const scrollListener = () => {
+    const scrollListener = debounce(() => {
       setIsScrolled(window.scrollY > 10);
-    }
+    }, 100);
 
     window.addEventListener('scroll', scrollListener);
 
