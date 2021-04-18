@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import api from 'services/api';
 import GlobalStyle from './globalStyles';
+import Header from 'components/Header';
 import MovieRow from 'components/MovieRow';
 import FeaturedMovie from 'components/FeaturedMovie';
 import { Lists } from './styles';
@@ -9,6 +10,7 @@ import { Lists } from './styles';
 const App = () => {
   const [homeList, setHomeList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const loadAll = async () => {
@@ -27,9 +29,23 @@ const App = () => {
     loadAll();
   }, []);
 
+  useEffect(() => {
+    const scrollListener = () => {
+      setIsScrolled(window.scrollY > 10);
+    }
+
+    window.addEventListener('scroll', scrollListener);
+
+    return () => {
+      window.removeEventListener('scroll', scrollListener);
+    }
+  }, []);
+
   return (
-    <div>
+    <>
       <GlobalStyle />
+
+      <Header black={isScrolled} />
 
       {Boolean(featuredData) && (
         <FeaturedMovie item={featuredData} />
@@ -46,7 +62,7 @@ const App = () => {
         </Lists>
       )}
 
-    </div>
+    </>
   );
 }
 

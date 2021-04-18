@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { setbackMargin } from 'styles';
+import { headerHeight } from 'components/Header/styles';
 
 const infoMargin = '15px';
 
@@ -27,7 +28,7 @@ export const HorizontalGradient = styled(Gradient)`
   justify-content: center;
   padding-bottom: ${setbackMargin};
   padding-left: 30px;
-  padding-top: 70px;
+  padding-top: ${headerHeight};
 `;
 
 export const Name = styled.p`
@@ -52,11 +53,20 @@ export const Points = styled(Inline)`
 `;
 
 export const Description = styled.p`
+  -ms-overflow-style: none;
   color: #999;
   font-size: 20px;
   font-weight: normal;
+  height: 40%;
   margin-top: 15px;
   max-width: 40%;
+  overflow: auto;
+  scrollbar-width: none;
+  text-overflow: ellipsis;
+
+  &::-webkit-scrollbar {
+    width: none;
+  }
 `;
 
 export const Buttons = styled.div`
