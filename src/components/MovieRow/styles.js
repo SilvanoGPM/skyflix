@@ -19,6 +19,10 @@ export const ButtonNavigate = styled.div`
   transition: .2s ease-in;
   width: 40px;
   z-index: 99;
+
+  @media (max-width: 760px) {
+    opacity: 1;
+  }
 `;
 
 export const ButtonNext = styled(ButtonNavigate)`

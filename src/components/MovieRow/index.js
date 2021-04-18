@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 const MovieRow = ({ title, items }) => {
-  const [scrollLength, setScrollLength] = useState(-400);
+  const [scrollLength, setScrollLength] = useState(0);
 
   const width = items.results.length * listItemWidth;
 

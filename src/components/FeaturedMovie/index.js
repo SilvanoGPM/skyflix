@@ -7,12 +7,12 @@ import {
   ButtonWatch,
   Container,
   Description,
+  HorizontalGradient,
   Genres,
   Info,
   Inline,
   Name,
   Points,
-  HorizontalGradient,
   VerticalGradient,
 } from './styles';
 
@@ -32,6 +32,9 @@ const FeaturedMovie = ({
   const seasons = `${number_of_seasons} temporada${number_of_seasons !== 1 ? 's' : ''}`;
   const date = new Date(first_air_date);
   const genresName = genres.map(genre => genre.name);
+  const description = overview.length > 200
+    ? overview.substring(0, 200) + '...'
+    : overview;
 
   return (
     <Container imageUrl={imageUrl}>
@@ -42,7 +45,7 @@ const FeaturedMovie = ({
             <Points>{vote_average} pontos</Points>
             <Inline>{date.getFullYear()}</Inline>
             <Inline>{seasons}</Inline>
-            <Description>{overview}</Description>
+            <Description>{description}</Description>
 
             <Buttons>
               <ButtonWatch href={`/watch/${id}`}>

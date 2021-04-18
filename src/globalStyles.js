@@ -7,6 +7,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  ::selection {
+    color: #fff;
+    background-color: #e50914;
+  }
+
   body {
     background-color: #111;
     color: #fff;

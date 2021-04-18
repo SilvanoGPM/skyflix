@@ -5,7 +5,8 @@ import GlobalStyle from './globalStyles';
 import Header from 'components/Header';
 import MovieRow from 'components/MovieRow';
 import FeaturedMovie from 'components/FeaturedMovie';
-import { Lists } from './styles';
+import loader from 'assets/loader.gif';
+import { Lists, Loading, Loader } from './styles';
 
 const App = () => {
   const [homeList, setHomeList] = useState([]);
@@ -62,6 +63,11 @@ const App = () => {
         </Lists>
       )}
 
+      {Boolean(!homeList.length) && (
+        <Loading>
+          <Loader src={loader} alt="loader" />
+        </Loading>
+      )}
     </>
   );
 }
