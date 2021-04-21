@@ -13,8 +13,10 @@
 
 Você precisará ter o [NodeJS](https://nodejs.org/en/) na sua máquina.
 
-1. Execute `npm install` ou `yarn`.
-2. Execute `npm start` ou `yarn start`.
+1. Clone este repositório.
+2. Abra uma nova janela no terminal e navegue até o diretório do projeto.
+3. Execute `npm install` ou `yarn`.
+4. Execute `npm start` ou `yarn start`.
 
 Para gerar um build do projeto, utilize o comando `npm run build` ou `yarn build`.
 
